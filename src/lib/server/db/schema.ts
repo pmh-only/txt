@@ -1,4 +1,10 @@
-import { integer, sqliteTable, text } from 'drizzle-orm/sqlite-core'
+import {
+  index,
+  integer,
+  sqliteTable,
+  text,
+  unique
+} from 'drizzle-orm/sqlite-core'
 
 export const post = sqliteTable('post', {
   id: integer('id').primaryKey({ autoIncrement: true }),
@@ -19,3 +25,15 @@ export const post = sqliteTable('post', {
     .$default(() => Date.now()),
   updatedAt: integer('updated_at')
 })
+
+export const view = sqliteTable(
+  'view',
+  {
+    postId: integer('id').notNull(),
+    ipAddr: text('ip').notNull()
+  },
+  (t) => [
+    unique().on(t.postId, t.ipAddr),
+    index('post_id').on(t.postId)
+  ]
+)

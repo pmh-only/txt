@@ -1,8 +1,11 @@
 <script lang="ts">
   import { resolve } from '$app/paths'
+  import { onMount } from 'svelte'
   import type { PageProps } from './$types'
 
   let { data, params }: PageProps = $props()
+
+  onMount(() => fetch(data.post.id.toString(), { method: 'HEAD' }))
 </script>
 
 <h1>{data.post.title}</h1>
