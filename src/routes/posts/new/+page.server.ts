@@ -1,11 +1,19 @@
-import { redirect } from '@sveltejs/kit'
+import { error, redirect } from '@sveltejs/kit'
 import { db } from '$lib/server/db'
 import { post } from '$lib/server/db/schema'
 import type { Actions } from './$types'
 import { resolve } from '$app/paths'
+import { validateToken } from '$lib/server/crypto'
 
 export const actions = {
-  default: async ({ request }) => {
+  default: async ({ request, cookies }) => {
+    const isAdmin = validateToken(cookies.get('SESSION_TOKEN') ?? '')
+    if (!isAdmin) {
+      error(403, {
+        message: 'Unauthorized'
+      })
+    }
+
     const data = await request.formData()
 
     const inferData: typeof post.$inferInsert = {
