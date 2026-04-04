@@ -15,7 +15,7 @@
 <nav>
   {#if data.isAdmin}
     Logged in
-    <form method="post" action={resolve(`/auth/logout?state=${state}`)}>
+    <form method="post" action={resolve('/auth/logout')}>
       <button type="submit">Logout</button>
     </form>
   {:else}
