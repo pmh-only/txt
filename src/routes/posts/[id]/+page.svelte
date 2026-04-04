@@ -48,3 +48,5 @@
     Delete
   </a>
 {/if}
+
+<a href={resolve('/')}>Back</a>

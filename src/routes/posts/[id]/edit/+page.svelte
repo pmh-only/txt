@@ -1,8 +1,9 @@
 <script lang="ts">
+  import { resolve } from '$app/paths'
   import PostEditor from '$lib/components/PostEditor.svelte'
   import type { PageProps } from './$types'
 
-  let { data, form }: PageProps = $props()
+  let { data, form, params }: PageProps = $props()
 </script>
 
 <h1>Edit post #{data.post.id}</h1>
@@ -18,4 +19,5 @@
   {/if}
 
   <button type="submit">Submit</button>
+  <a href={resolve('/posts/[id]', { id: params.id })}> Cancel </a>
 </form>

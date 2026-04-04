@@ -6,12 +6,16 @@
   let { data }: PageProps = $props()
 </script>
 
-<h1>Latest .txts</h1>
+<svelte:head>
+  <title>Posts - txt.</title>
+</svelte:head>
+
+<h1>Latest txt.</h1>
 <ul>
   <PostDisplay posts={data.latests} />
 </ul>
 
-<h1>Popular .txts</h1>
+<h1>Popular txts.</h1>
 <ul>
   <PostDisplay posts={data.populars} />
 </ul>
