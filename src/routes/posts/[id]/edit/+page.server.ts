@@ -32,7 +32,7 @@ export const actions = {
     await db.update(post).set(inferData).where(eq(post.id, id))
 
     redirect(
-      302,
+      307,
       resolve('/posts/[id]', {
         id: Number.isNaN(parseInt(params.id))
           ? inferData.alias

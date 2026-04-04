@@ -19,6 +19,6 @@ export const actions = {
     const id = parseInt(data.get('id')?.toString() ?? params.id)
 
     await db.delete(post).where(eq(post.id, id))
-    redirect(302, resolve('/'))
+    redirect(307, resolve('/'))
   }
 } satisfies Actions
