@@ -8,10 +8,14 @@
   onMount(() => fetch(data.post.id.toString(), { method: 'HEAD' }))
 </script>
 
-<h1>{data.post.title}</h1>
+<h1>{data.post.title}.txt</h1>
 
-<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-{@html data.post.content}
+<section>
+  <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+  {@html data.post.content}
+</section>
+
+<hr />
 
 <section class="metadata">
   <p>

@@ -13,7 +13,7 @@
       })}
     >
       #{post.id}
-      {post.title}
+      {post.title}.txt
     </a>
   </li>
 {/each}

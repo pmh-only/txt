@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { TrixEditor } from 'svelte-trix'
+
   let {
     data = {
       title: '',
@@ -14,6 +16,9 @@
       visibility: 'PUBLIC' | 'UNLISTED' | 'PRIVATE'
     }
   } = $props()
+
+  // svelte-ignore state_referenced_locally
+  let value = $state(data.content)
 </script>
 
 <label>
@@ -26,7 +31,7 @@
 </label>
 <label>
   <p>content</p>
-  <textarea name="content" value={data.content}></textarea>
+  <TrixEditor bind:value />
 </label>
 
 <div>

@@ -4,6 +4,7 @@
   --color-theme-100: #cfcfcf;
   --color-theme-200: #a8a8a8;
   --color-theme-300: #888888;
+  --color-theme-500: #646464;
   --color-theme-800: #2e2e2e;
 }
 
@@ -31,4 +32,8 @@ h2 {
 
 section {
   @apply py-2;
+}
+
+hr {
+  @apply border-theme-500;
 }
