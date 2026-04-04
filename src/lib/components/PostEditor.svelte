@@ -1,6 +1,4 @@
 <script lang="ts">
-  import { TrixEditor } from 'svelte-trix'
-
   let {
     data = {
       title: '',
@@ -18,7 +16,7 @@
   } = $props()
 
   // svelte-ignore state_referenced_locally
-  let value = $state(data.content)
+  let content = $state(data.content)
 </script>
 
 <label>
@@ -31,7 +29,15 @@
 </label>
 <label>
   <p>content</p>
-  <TrixEditor bind:value />
+  <textarea
+    name="content"
+    oninput={(e) => {
+      content = e.currentTarget.value
+    }}>{data.content}</textarea
+  >
+
+  <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+  <div>{@html content}</div>
 </label>
 
 <div>
