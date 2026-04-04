@@ -1,1 +1,34 @@
 @import 'tailwindcss';
+
+@theme {
+  --color-theme-100: #cfcfcf;
+  --color-theme-200: #a8a8a8;
+  --color-theme-300: #888888;
+  --color-theme-800: #2e2e2e;
+}
+
+:root {
+  @apply w-full max-w-xl bg-theme-800 px-4 py-2 text-theme-200;
+}
+
+a,
+button {
+  @apply cursor-pointer underline decoration-theme-300 decoration-dotted hover:decoration-solid;
+}
+
+h1,
+h2 {
+  @apply font-bold text-theme-100;
+}
+
+h1 {
+  @apply text-xl;
+}
+
+h2 {
+  @apply text-sm;
+}
+
+section {
+  @apply py-2;
+}

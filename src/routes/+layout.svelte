@@ -13,7 +13,7 @@
   <title>txt.</title>
 </svelte:head>
 
-<nav>
+<nav class="flex w-full justify-end gap-4">
   {#if data.isAdmin}
     Logged in
     <form method="post" action={resolve('/auth/logout')}>
