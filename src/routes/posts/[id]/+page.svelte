@@ -1,24 +1,37 @@
 <script lang="ts">
+  import { resolve } from '$app/paths'
   import type { PageProps } from './$types'
 
-  let { data }: PageProps = $props()
+  let { data, params }: PageProps = $props()
 </script>
 
-<main>
-  <h1>{data.post.title}</h1>
+<h1>{data.post.title}</h1>
 
-  <!-- eslint-disable-next-line svelte/no-at-html-tags -->
-  {@html data.post.content}
+<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+{@html data.post.content}
 
-  <section class="metadata">
+<section class="metadata">
+  <p>
+    {data.post.viewCount} views / {data.post.uniqueCount} uniques
+  </p>
+
+  <p>
+    Posted At:
+    {new Date(data.post.createdAt).toLocaleString()}
+  </p>
+
+  {#if data.post.updatedAt !== null}
     <p>
-      {data.post.viewCount} views / {data.post.uniqueCount} uniques
+      Updated At:
+      {new Date(data.post.updatedAt).toLocaleString()}
     </p>
-    <p>Posted At: {new Date(data.post.createdAt).toLocaleString()}</p>
-    {#if data.post.updatedAt !== null}
-      <p>
-        Updated At: {new Date(data.post.updatedAt).toLocaleString()}
-      </p>
-    {/if}
-  </section>
-</main>
+  {/if}
+</section>
+
+<a
+  href={resolve('/posts/[id]/edit', {
+    id: params.id
+  })}
+>
+  Edit
+</a>

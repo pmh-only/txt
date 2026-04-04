@@ -18,14 +18,7 @@ export const actions = {
         | 'PRIVATE'
     }
 
-    const returnedPost = await db
-      .insert(post)
-      .values(inferData)
-      .returning({ id: post.id })
-
-    redirect(
-      302,
-      resolve('/posts/[id]', { id: returnedPost[0].id.toString() })
-    )
+    await db.insert(post).values(inferData)
+    redirect(302, resolve('/posts/[id]', { id: inferData.alias }))
   }
 } satisfies Actions
