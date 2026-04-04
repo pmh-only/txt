@@ -1,10 +1,19 @@
-import { eq } from 'drizzle-orm'
+import { and, eq, not } from 'drizzle-orm'
 import { db } from '$lib/server/db'
-import type { Actions } from './$types'
+import type { Actions, PageServerLoad } from './$types'
 import { post } from '$lib/server/db/schema'
 import { error, redirect } from '@sveltejs/kit'
 import { resolve } from '$app/paths'
 import { validateToken } from '../../../../lib/server/crypto'
+
+export const load: PageServerLoad = async ({ parent }) => {
+  const { isAdmin } = await parent()
+  if (!isAdmin) {
+    error(404, {
+      message: 'Not Found'
+    })
+  }
+}
 
 export const actions = {
   default: async ({ params, request, cookies }) => {
@@ -41,7 +50,12 @@ export const actions = {
     const [isAliasExist] = await db
       .select()
       .from(post)
-      .where(eq(post.alias, inferData.alias))
+      .where(
+        and(
+          not(eq(post.id, id)), //
+          eq(post.alias, inferData.alias)
+        )
+      )
       .limit(1)
 
     if (isAliasExist !== undefined) {

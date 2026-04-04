@@ -1,10 +1,19 @@
 import { error, redirect } from '@sveltejs/kit'
 import { db } from '$lib/server/db'
 import { post } from '$lib/server/db/schema'
-import type { Actions } from './$types'
+import type { Actions, PageServerLoad } from './$types'
 import { resolve } from '$app/paths'
 import { validateToken } from '$lib/server/crypto'
 import { eq } from 'drizzle-orm'
+
+export const load: PageServerLoad = async ({ parent }) => {
+  const { isAdmin } = await parent()
+  if (!isAdmin) {
+    error(404, {
+      message: 'Not Found'
+    })
+  }
+}
 
 export const actions = {
   default: async ({ request, cookies }) => {

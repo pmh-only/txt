@@ -28,18 +28,20 @@
   {/if}
 </section>
 
-<a
-  href={resolve('/posts/[id]/edit', {
-    id: params.id
-  })}
->
-  Edit
-</a>
+{#if data.isAdmin}
+  <a
+    href={resolve('/posts/[id]/edit', {
+      id: params.id
+    })}
+  >
+    Edit
+  </a>
 
-<a
-  href={resolve('/posts/[id]/delete', {
-    id: params.id
-  })}
->
-  Delete
-</a>
+  <a
+    href={resolve('/posts/[id]/delete', {
+      id: params.id
+    })}
+  >
+    Delete
+  </a>
+{/if}

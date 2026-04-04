@@ -16,4 +16,6 @@
   <PostDisplay posts={data.populars} />
 </ul>
 
-<a href={resolve('/posts/new')}>Create</a>
+{#if data.isAdmin}
+  <a href={resolve('/posts/new')}>Create</a>
+{/if}

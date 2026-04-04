@@ -20,14 +20,14 @@ export const load: LayoutServerLoad = async ({ params, cookies }) => {
 
   if (data === undefined) {
     error(404, {
-      message: 'Post not found.'
+      message: 'Not Found'
     })
   }
 
   const isAdmin = validateToken(cookies.get('SESSION_TOKEN') ?? '')
   if (data.visibility === 'PRIVATE' && !isAdmin) {
     error(404, {
-      message: 'Post not found.'
+      message: 'Not Found'
     })
   }
 
