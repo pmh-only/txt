@@ -18,15 +18,15 @@
 
 <label>
   <p>title</p>
-  <input name="title" required value={data.title} />
+  <input name="title" value={data.title} />
 </label>
 <label>
   <p>alias</p>
-  <input name="alias" required value={data.alias} />
+  <input name="alias" value={data.alias} />
 </label>
 <label>
   <p>content</p>
-  <textarea name="content" required value={data.content}></textarea>
+  <textarea name="content" value={data.content}></textarea>
 </label>
 
 <div>
@@ -38,7 +38,6 @@
       name="visibility"
       value="PUBLIC"
       checked={data.visibility === 'PUBLIC'}
-      required
     /> PUBLIC
   </label>
   <label>
@@ -47,7 +46,6 @@
       name="visibility"
       value="UNLISTED"
       checked={data.visibility === 'UNLISTED'}
-      required
     /> UNLISTED
   </label>
   <label>
@@ -56,7 +54,6 @@
       name="visibility"
       value="PRIVATE"
       checked={data.visibility === 'PRIVATE'}
-      required
     /> PRIVATE
   </label>
 </div>

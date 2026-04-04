@@ -29,6 +29,28 @@ export const actions = {
       updatedAt: Date.now()
     }
 
+    for (const [key, value] of Object.entries(inferData)) {
+      if (value === '') {
+        return {
+          message: `Field "${key}" can not be empty.`,
+          inferData
+        }
+      }
+    }
+
+    const [isAliasExist] = await db
+      .select()
+      .from(post)
+      .where(eq(post.alias, inferData.alias))
+      .limit(1)
+
+    if (isAliasExist !== undefined) {
+      return {
+        message: `Alias named "${inferData.alias}" already exists.`,
+        inferData
+      }
+    }
+
     await db.update(post).set(inferData).where(eq(post.id, id))
 
     redirect(

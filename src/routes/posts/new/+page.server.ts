@@ -4,6 +4,7 @@ import { post } from '$lib/server/db/schema'
 import type { Actions } from './$types'
 import { resolve } from '$app/paths'
 import { validateToken } from '$lib/server/crypto'
+import { eq } from 'drizzle-orm'
 
 export const actions = {
   default: async ({ request, cookies }) => {
@@ -24,6 +25,28 @@ export const actions = {
         | 'PUBLIC'
         | 'UNLISTED'
         | 'PRIVATE'
+    }
+
+    for (const [key, value] of Object.entries(inferData)) {
+      if (value === '') {
+        return {
+          message: `Field "${key}" can not be empty.`,
+          inferData
+        }
+      }
+    }
+
+    const [isAliasExist] = await db
+      .select()
+      .from(post)
+      .where(eq(post.alias, inferData.alias))
+      .limit(1)
+
+    if (isAliasExist !== undefined) {
+      return {
+        message: `Alias named "${inferData.alias}" already exists.`,
+        inferData
+      }
     }
 
     await db.insert(post).values(inferData)

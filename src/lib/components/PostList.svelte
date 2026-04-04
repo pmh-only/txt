@@ -10,7 +10,7 @@
     <li>
       <a
         href={resolve('/posts/[id]', {
-          id: post.id.toString()
+          id: post.alias
         })}
       >
         {post.title}
