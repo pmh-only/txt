@@ -11,7 +11,7 @@ export const load: PageServerLoad = ({ url, cookies }) => {
     const url = new URL(env.PUBLIC_OAUTH_START)
     url.searchParams.set('state', state)
 
-    redirect(307, url)
+    redirect(303, url)
   }
 
   cookies.set('SESSION_TOKEN', signToken(), {
@@ -20,5 +20,5 @@ export const load: PageServerLoad = ({ url, cookies }) => {
     httpOnly: true,
     sameSite: true
   })
-  redirect(307, state)
+  redirect(303, state)
 }

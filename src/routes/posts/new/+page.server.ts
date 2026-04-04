@@ -27,6 +27,6 @@ export const actions = {
     }
 
     await db.insert(post).values(inferData)
-    redirect(307, resolve('/posts/[id]', { id: inferData.alias }))
+    redirect(303, resolve('/posts/[id]', { id: inferData.alias }))
   }
 } satisfies Actions
