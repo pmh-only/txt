@@ -34,26 +34,7 @@ export const actions = {
     const data = await request.formData()
     const id = parseInt(data.get('id')?.toString() ?? params.id)
 
-    const inferData: typeof post.$inferInsert = {
-      title: data.get('title')?.toString() ?? '',
-      alias: data.get('alias')?.toString() ?? '',
-      content: data.get('content')?.toString() ?? '',
-      visibility: data.get('visibility')?.toString() as
-        | 'PUBLIC'
-        | 'UNLISTED'
-        | 'PRIVATE',
-      updatedAt: Date.now()
-    }
-
-    await db.update(post).set(inferData).where(eq(post.id, id))
-
-    redirect(
-      302,
-      resolve('/posts/[id]', {
-        id: Number.isNaN(parseInt(params.id))
-          ? inferData.alias
-          : id.toString()
-      })
-    )
+    await db.delete(post).where(eq(post.id, id))
+    redirect(302, resolve('/'))
   }
 } satisfies Actions

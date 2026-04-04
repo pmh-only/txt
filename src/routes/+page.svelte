@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { resolve } from '$app/paths'
   import PostDisplay from '$lib/components/PostList.svelte'
   import type { PageProps } from './$types'
 
@@ -14,3 +15,5 @@
 <ul>
   <PostDisplay posts={data.populars} />
 </ul>
+
+<a href={resolve('/posts/new')}>Create</a>

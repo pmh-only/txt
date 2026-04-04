@@ -35,3 +35,11 @@
 >
   Edit
 </a>
+
+<a
+  href={resolve('/posts/[id]/delete', {
+    id: params.id
+  })}
+>
+  Delete
+</a>
