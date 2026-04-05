@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@fontsource-variable/noto-serif-kr':
+        specifier: ^5.2.10
+        version: 5.2.10
       '@tiptap/core':
         specifier: ^3.22.2
         version: 3.22.2(@tiptap/pm@3.22.2)
@@ -598,6 +601,9 @@ packages:
   '@eslint/plugin-kit@0.7.0':
     resolution: {integrity: sha512-ejvBr8MQCbVsWNZnCwDXjUKq40MDmHalq7cJ6e9s/qzTUFIIo/afzt1Vui9T97FM/V/pN4YsFVoed5NIa96RDg==}
     engines: {node: ^20.19.0 || ^22.13.0 || >=24}
+
+  '@fontsource-variable/noto-serif-kr@5.2.10':
+    resolution: {integrity: sha512-NcAsPHoFyyYLYO4JUIrQAjRr3VtIApmRYxgmL28ylvvqNCT/35uk9A7F6U3xmzmTqn4e5YVOagsFaHCo7xs9Bg==}
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -2549,6 +2555,8 @@ snapshots:
     dependencies:
       '@eslint/core': 1.2.0
       levn: 0.4.1
+
+  '@fontsource-variable/noto-serif-kr@5.2.10': {}
 
   '@humanfs/core@0.19.1': {}
 

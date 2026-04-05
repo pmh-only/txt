@@ -11,8 +11,6 @@
 </svelte:head>
 
 <main>
-  <h1>txt.</h1>
-
   <section>
     <h2>Latest txt.</h2>
     <ul>
@@ -21,7 +19,7 @@
   </section>
 
   <section>
-    <h2>Popular txts.</h2>
+    <h2>Popular txt.</h2>
     <ul>
       <PostDisplay posts={data.populars} />
     </ul>

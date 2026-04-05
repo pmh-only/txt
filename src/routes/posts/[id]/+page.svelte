@@ -9,12 +9,11 @@
 </script>
 
 <main>
-  <section class="prose">
-    <h1>{data.post.title}.txt</h1>
-
+  <h1>{data.post.title}.txt</h1>
+  <div class="prose pb-4 select-text">
     <!-- eslint-disable-next-line svelte/no-at-html-tags -->
     {@html data.post.content}
-  </section>
+  </div>
 </main>
 
 <footer>

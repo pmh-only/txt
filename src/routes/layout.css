@@ -6,10 +6,12 @@
   --color-theme-300: #888888;
   --color-theme-500: #646464;
   --color-theme-800: #2e2e2e;
+
+  --font-content: 'Noto Serif KR Variable', serif;
 }
 
 :root {
-  @apply bg-theme-800 text-theme-200;
+  @apply bg-theme-800 font-content text-lg text-theme-200 select-none;
 }
 
 html,
@@ -19,7 +21,7 @@ body {
 
 a,
 button {
-  @apply cursor-pointer underline decoration-theme-300 decoration-dotted hover:decoration-solid;
+  @apply cursor-pointer decoration-theme-500 hover:underline;
 }
 
 h1,
@@ -28,11 +30,11 @@ h2 {
 }
 
 h1 {
-  @apply text-xl;
+  @apply text-2xl;
 }
 
 h2 {
-  @apply text-sm;
+  @apply text-lg;
 }
 
 section {
@@ -48,7 +50,7 @@ hr {
 }
 
 .cont footer {
-  @apply border-t border-theme-500 py-3;
+  @apply border-t border-theme-500 py-3 text-sm;
 }
 
 .prose h1 {
