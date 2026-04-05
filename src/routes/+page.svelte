@@ -10,22 +10,26 @@
   <title>Posts - txt.</title>
 </svelte:head>
 
-<h1>txt.</h1>
+<main>
+  <h1>txt.</h1>
 
-<section>
-  <h2>Latest txt.</h2>
-  <ul>
-    <PostDisplay posts={data.latests} />
-  </ul>
-</section>
+  <section>
+    <h2>Latest txt.</h2>
+    <ul>
+      <PostDisplay posts={data.latests} />
+    </ul>
+  </section>
 
-<section>
-  <h2>Popular txts.</h2>
-  <ul>
-    <PostDisplay posts={data.populars} />
-  </ul>
-</section>
+  <section>
+    <h2>Popular txts.</h2>
+    <ul>
+      <PostDisplay posts={data.populars} />
+    </ul>
+  </section>
+</main>
 
-{#if data.isAdmin}
-  <a href={resolve('/posts/new')}>Create</a>
-{/if}
+<footer>
+  {#if data.isAdmin}
+    <a href={resolve('/posts/new')}>Create</a>
+  {/if}
+</footer>

@@ -10,16 +10,20 @@
   <title>New post - txt.</title>
 </svelte:head>
 
-<h1>New post</h1>
+<main class="flex flex-col">
+  <h1>New post</h1>
 
-<form method="POST">
-  {#if form?.message}
-    <p>{form.message}</p>
-    <PostEditor data={form.inferData} />
-  {:else}
-    <PostEditor />
-  {/if}
+  <form method="POST" id="form" class="flex grow flex-col">
+    {#if form?.message}
+      <p class="text-red-400">{form.message}</p>
+      <PostEditor data={form.inferData} />
+    {:else}
+      <PostEditor />
+    {/if}
+  </form>
+</main>
 
-  <button type="submit">Submit</button>
+<footer>
+  <button type="submit" form="form">Submit</button>
   <a href={resolve('/')}>Cancel</a>
-</form>
+</footer>

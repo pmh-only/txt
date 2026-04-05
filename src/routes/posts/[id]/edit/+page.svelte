@@ -6,18 +6,22 @@
   let { data, form, params }: PageProps = $props()
 </script>
 
-<h1>Edit post #{data.post.id}</h1>
+<main class="flex flex-col">
+  <h1>Edit post #{data.post.id}</h1>
 
-<form method="POST">
-  <input type="hidden" name="id" value={data.post.id} />
+  <form method="POST" id="form" class="flex grow flex-col">
+    <input type="hidden" name="id" value={data.post.id} />
 
-  {#if form?.message}
-    <p>{form.message}</p>
-    <PostEditor data={form.inferData} />
-  {:else}
-    <PostEditor data={data.post} />
-  {/if}
+    {#if form?.message}
+      <p class="text-red-400">{form.message}</p>
+      <PostEditor data={form.inferData} />
+    {:else}
+      <PostEditor data={data.post} />
+    {/if}
+  </form>
+</main>
 
-  <button type="submit">Submit</button>
+<footer>
+  <button type="submit" form="form">Submit</button>
   <a href={resolve('/posts/[id]', { id: params.id })}> Cancel </a>
-</form>
+</footer>

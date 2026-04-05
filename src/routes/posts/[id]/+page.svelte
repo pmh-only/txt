@@ -8,16 +8,16 @@
   onMount(() => fetch(data.post.id.toString(), { method: 'HEAD' }))
 </script>
 
-<h1>{data.post.title}.txt</h1>
+<main>
+  <section class="prose">
+    <h1>{data.post.title}.txt</h1>
 
-<section>
-  <!-- eslint-disable-next-line svelte/no-at-html-tags -->
-  {@html data.post.content}
-</section>
+    <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+    {@html data.post.content}
+  </section>
+</main>
 
-<hr />
-
-<section class="metadata">
+<footer>
   <p>
     {data.post.viewCount} views / {data.post.uniqueCount} uniques
   </p>
@@ -33,24 +33,26 @@
       {new Date(data.post.updatedAt).toLocaleString()}
     </p>
   {/if}
-</section>
 
-{#if data.isAdmin}
-  <a
-    href={resolve('/posts/[id]/edit', {
-      id: params.id
-    })}
-  >
-    Edit
-  </a>
+  <section>
+    {#if data.isAdmin}
+      <a
+        href={resolve('/posts/[id]/edit', {
+          id: params.id
+        })}
+      >
+        Edit
+      </a>
 
-  <a
-    href={resolve('/posts/[id]/delete', {
-      id: params.id
-    })}
-  >
-    Delete
-  </a>
-{/if}
+      <a
+        href={resolve('/posts/[id]/delete', {
+          id: params.id
+        })}
+      >
+        Delete
+      </a>
+    {/if}
 
-<a href={resolve('/')}>Back</a>
+    <a href={resolve('/')}>Back</a>
+  </section>
+</footer>

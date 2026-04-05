@@ -5,12 +5,17 @@
   let { data, params }: PageProps = $props()
 </script>
 
-<h1>Delete post #{data.post.id}</h1>
+<main>
+  <h1>Delete post #{data.post.id}</h1>
 
-<form method="POST">
-  <input type="hidden" name="id" value={data.post.id} />
+  <form method="POST" id="form">
+    <input type="hidden" name="id" value={data.post.id} />
 
-  <p>Are you sure?</p>
-  <button type="submit">Submit</button>
+    <p>Are you sure?</p>
+  </form>
+</main>
+
+<footer>
+  <button form="form" type="submit">Submit</button>
   <a href={resolve('/posts/[id]', { id: params.id })}> Cancel </a>
-</form>
+</footer>

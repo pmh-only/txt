@@ -6,6 +6,4 @@
   <title>{data.post.title} - txt.</title>
 </svelte:head>
 
-<main>
-  {@render children()}
-</main>
+{@render children()}

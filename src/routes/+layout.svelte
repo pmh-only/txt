@@ -13,17 +13,19 @@
   <title>txt.</title>
 </svelte:head>
 
-<nav class="flex w-full justify-end gap-4">
-  {#if data.isAdmin}
-    Logged in
-    <form method="post" action={resolve('/auth/logout')}>
-      <button type="submit">Logout</button>
-    </form>
-  {:else}
-    <a href={resolve(`/auth/login?state=${state}`)}>Login</a>
-  {/if}
-</nav>
+<div class="flex h-full max-h-270 w-full max-w-xl flex-col px-4 py-2">
+  <nav class="flex justify-end gap-4">
+    {#if data.isAdmin}
+      Logged in
+      <form method="post" action={resolve('/auth/logout')}>
+        <button type="submit">Logout</button>
+      </form>
+    {:else}
+      <a href={resolve(`/auth/login?state=${state}`)}>Login</a>
+    {/if}
+  </nav>
 
-<main>
-  {@render children()}
-</main>
+  <div class="cont flex grow flex-col">
+    {@render children()}
+  </div>
+</div>
