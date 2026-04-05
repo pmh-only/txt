@@ -22,7 +22,7 @@ export const load: PageServerLoad = async ({ parent }) => {
       layoutData.isAdmin ? undefined : eq(post.visibility, 'PUBLIC')
     )
     .orderBy(desc(post.viewCount))
-    .limit(10)
+    .limit(5)
 
   return {
     latests,

@@ -2,6 +2,8 @@
   import './layout.css'
   import '@fontsource-variable/noto-serif-kr/wght.css'
 
+  import favicon from '$lib/assets/favicon.webp'
+
   import { resolve } from '$app/paths'
   import { page } from '$app/state'
 
@@ -13,6 +15,7 @@
 
 <svelte:head>
   <title>txt.</title>
+  <link rel="shortcut icon" href={favicon} type="image/webp" />
 </svelte:head>
 
 <div class="flex h-full max-h-270 w-full max-w-xl flex-col px-4 py-2">

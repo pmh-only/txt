@@ -12,16 +12,16 @@
 
 <main>
   <section>
-    <h2>Latest txt.</h2>
+    <h2>Populars</h2>
     <ul>
-      <PostDisplay posts={data.latests} />
+      <PostDisplay posts={data.populars} />
     </ul>
   </section>
 
   <section>
-    <h2>Popular txt.</h2>
+    <h2>Latests</h2>
     <ul>
-      <PostDisplay posts={data.populars} />
+      <PostDisplay posts={data.latests} />
     </ul>
   </section>
 </main>
