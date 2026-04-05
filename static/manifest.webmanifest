@@ -1,0 +1,17 @@
+{
+  "name": "txt.",
+  "short_name": "txt.",
+  "description": "A minimalist writing space.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#2e2e2e",
+  "theme_color": "#2e2e2e",
+  "icons": [
+    {
+      "src": "/favicon.webp",
+      "sizes": "any",
+      "type": "image/webp",
+      "purpose": "any maskable"
+    }
+  ]
+}

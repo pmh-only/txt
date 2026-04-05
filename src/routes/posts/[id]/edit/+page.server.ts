@@ -5,6 +5,7 @@ import { post } from '$lib/server/db/schema'
 import { error, redirect } from '@sveltejs/kit'
 import { resolve } from '$app/paths'
 import { validateToken } from '$lib/server/crypto'
+import { pingIndexNow } from '$lib/server/indexnow'
 
 export const load: PageServerLoad = async ({ parent }) => {
   const { isAdmin } = await parent()
@@ -67,6 +68,10 @@ export const actions = {
     }
 
     await db.update(post).set(inferData).where(eq(post.id, id))
+
+    if (inferData.visibility === 'PUBLIC') {
+      void pingIndexNow(new URL(request.url).origin, `/posts/${inferData.alias}`)
+    }
 
     redirect(
       303,

@@ -30,6 +30,7 @@
   <meta property="og:locale" content="en_US" />
   <meta name="twitter:card" content="summary" />
   <link rel="canonical" href={page.url.origin + page.url.pathname} />
+  <link rel="manifest" href="/manifest.webmanifest" />
   <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
   <link rel="alternate" type="application/rss+xml" title="txt. RSS Feed" href="/rss.xml" />
   <meta name="theme-color" content="#2e2e2e" />

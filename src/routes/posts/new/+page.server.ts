@@ -4,6 +4,7 @@ import { post } from '$lib/server/db/schema'
 import type { Actions, PageServerLoad } from './$types'
 import { resolve } from '$app/paths'
 import { validateToken } from '$lib/server/crypto'
+import { pingIndexNow } from '$lib/server/indexnow'
 import { eq } from 'drizzle-orm'
 
 export const load: PageServerLoad = async ({ parent }) => {
@@ -59,6 +60,11 @@ export const actions = {
     }
 
     await db.insert(post).values(inferData)
+
+    if (inferData.visibility === 'PUBLIC') {
+      void pingIndexNow(new URL(request.url).origin, `/posts/${inferData.alias}`)
+    }
+
     redirect(303, resolve('/posts/[id]', { id: inferData.alias }))
   }
 } satisfies Actions
