@@ -6,15 +6,34 @@
 
   import { resolve } from '$app/paths'
   import { page } from '$app/state'
+  import { browser } from '$app/environment'
 
   let { children } = $props()
   const state = $derived(
     encodeURIComponent(page.url.pathname + page.url.search)
   )
+
+  $effect(() => {
+    if (browser) {
+      const lang = document.querySelector('meta[http-equiv="content-language"]')?.getAttribute('content') ?? 'en'
+      document.documentElement.lang = lang
+    }
+  })
 </script>
 
 <svelte:head>
   <title>txt.</title>
+  <meta name="description" content="A minimalist writing space." />
+  <meta property="og:site_name" content="txt." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={page.url.href} />
+  <meta property="og:locale" content="en_US" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="canonical" href={page.url.origin + page.url.pathname} />
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+  <link rel="alternate" type="application/rss+xml" title="txt. RSS Feed" href="/rss.xml" />
+  <meta name="theme-color" content="#2e2e2e" />
+  <link rel="apple-touch-icon" href={favicon} />
   <link rel="shortcut icon" href={favicon} type="image/webp" />
 </svelte:head>
 

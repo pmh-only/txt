@@ -6,6 +6,11 @@
   let { data, form, params }: PageProps = $props()
 </script>
 
+<svelte:head>
+  <title>Edit #{data.post.id} - txt.</title>
+  <meta name="robots" content="noindex" />
+</svelte:head>
+
 <main class="flex flex-col">
   <h1>Edit post #{data.post.id}</h1>
 

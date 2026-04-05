@@ -8,6 +8,7 @@
 
 <svelte:head>
   <title>New post - txt.</title>
+  <meta name="robots" content="noindex" />
 </svelte:head>
 
 <main class="flex flex-col">

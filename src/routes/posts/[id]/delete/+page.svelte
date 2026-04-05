@@ -5,6 +5,11 @@
   let { data, params }: PageProps = $props()
 </script>
 
+<svelte:head>
+  <title>Delete #{data.post.id} - txt.</title>
+  <meta name="robots" content="noindex" />
+</svelte:head>
+
 <main>
   <h1>Delete post #{data.post.id}</h1>
 
