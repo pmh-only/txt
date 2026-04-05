@@ -4,7 +4,7 @@ import type { Actions, PageServerLoad } from './$types'
 import { post } from '$lib/server/db/schema'
 import { error, redirect } from '@sveltejs/kit'
 import { resolve } from '$app/paths'
-import { validateToken } from '../../../../lib/server/crypto'
+import { validateToken } from '$lib/server/crypto'
 
 export const load: PageServerLoad = async ({ parent }) => {
   const { isAdmin } = await parent()
@@ -31,6 +31,7 @@ export const actions = {
       title: data.get('title')?.toString() ?? '',
       alias: data.get('alias')?.toString() ?? '',
       content: data.get('content')?.toString() ?? '',
+      contentPreview: data.get('contentPreview')?.toString() ?? '',
       visibility: data.get('visibility')?.toString() as
         | 'PUBLIC'
         | 'UNLISTED'

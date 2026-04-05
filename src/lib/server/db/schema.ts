@@ -10,6 +10,7 @@ export const post = sqliteTable('post', {
   id: integer('id').primaryKey({ autoIncrement: true }),
   title: text('title').notNull(),
   content: text('content').notNull(),
+  contentPreview: text('content_preview'),
   alias: text('alias').notNull().unique(),
   visibility: text('visibility', {
     enum: ['PUBLIC', 'UNLISTED', 'PRIVATE']

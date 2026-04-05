@@ -2,6 +2,7 @@
   import { onMount, onDestroy } from 'svelte'
   import { Editor } from '@tiptap/core'
   import StarterKit from '@tiptap/starter-kit'
+  import { polishHtml } from '$lib/client/html'
 
   let {
     data = {
@@ -53,6 +54,12 @@
 </script>
 
 <div class="flex grow flex-col">
+  <input
+    type="hidden"
+    name="contentPreview"
+    value={polishHtml(content).slice(0, 47) + '...'}
+  />
+
   <label>
     <p>title</p>
     <input name="title" value={data.title} />

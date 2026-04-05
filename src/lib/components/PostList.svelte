@@ -6,14 +6,17 @@
 </script>
 
 {#each posts as post (post.id)}
-  <li>
+  <li class="mb-2">
     <a
       href={resolve('/posts/[id]', {
         id: post.alias
       })}
     >
-      #{post.id}
-      {post.title}.txt
+      <p>
+        <b>#{post.id}</b>
+        {post.title}.txt
+      </p>
+      <p class="text-xs">{post.contentPreview ?? ''}</p>
     </a>
   </li>
 {/each}
