@@ -17,6 +17,8 @@
 </main>
 
 <footer>
+  <p><b>#{data.post.id} {data.post.title}</b></p>
+
   <p>
     {data.post.viewCount} views / {data.post.uniqueCount} uniques
   </p>
