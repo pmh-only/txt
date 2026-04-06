@@ -84,6 +84,7 @@ export const GET: RequestHandler = async ({
   <title>${data.title} - txt.</title>
   <meta name="description" content="${description.replace(/"/g, '&quot;')}" />
   <link rel="canonical" href="${canonicalUrl}" />
+  <link rel="icon" href="${url.origin}/favicon.webp" />
   <meta property="og:locale" content="${locale}" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700&display=swap" />
   <script async src="https://cdn.ampproject.org/v0.js"></script>
