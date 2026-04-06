@@ -118,6 +118,35 @@ hr {
   margin-top: 0.5em;
 }
 
+.prose a {
+  @apply decoration-theme-500 hover:underline;
+}
+
+.prose mark {
+  background-color: var(--color-theme-500);
+  color: var(--color-theme-100);
+  padding: 0 0.1em;
+}
+
+.prose img {
+  max-width: 100%;
+}
+
+.prose table {
+  border-collapse: collapse;
+}
+
+.prose td,
+.prose th {
+  border: 1px solid var(--color-theme-500);
+  padding: 0.25rem 0.5rem;
+  min-width: 2rem;
+}
+
+.prose th {
+  @apply font-bold text-theme-100;
+}
+
 input {
   @apply border-b border-dotted hover:border-solid focus:border-solid focus:outline-0;
 }

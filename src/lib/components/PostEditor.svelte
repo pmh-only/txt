@@ -2,6 +2,14 @@
   import { onMount, onDestroy } from 'svelte'
   import { Editor } from '@tiptap/core'
   import StarterKit from '@tiptap/starter-kit'
+  import Link from '@tiptap/extension-link'
+  import Image from '@tiptap/extension-image'
+  import Underline from '@tiptap/extension-underline'
+  import { Table, TableRow, TableHeader, TableCell } from '@tiptap/extension-table'
+  import TextStyle from '@tiptap/extension-text-style'
+  import Highlight from '@tiptap/extension-highlight'
+  import Subscript from '@tiptap/extension-subscript'
+  import Superscript from '@tiptap/extension-superscript'
   import { polishHtml } from '$lib/client/html'
 
   let {
@@ -33,10 +41,40 @@
       editor?.isActive(name, attrs) ?? false
   })
 
+  function promptLink() {
+    const prev = editor?.getAttributes('link').href ?? ''
+    const href = prompt('URL', prev)
+    if (href === null) return
+    if (href === '') {
+      editor?.chain().focus().unsetLink().run()
+    } else {
+      editor?.chain().focus().setLink({ href }).run()
+    }
+  }
+
+  function promptImage() {
+    const src = prompt('Image URL')
+    if (!src) return
+    editor?.chain().focus().setImage({ src }).run()
+  }
+
   onMount(() => {
     editor = new Editor({
       element: editorEl,
-      extensions: [StarterKit],
+      extensions: [
+        StarterKit,
+        Underline,
+        TextStyle,
+        Highlight,
+        Subscript,
+        Superscript,
+        Link.configure({ openOnClick: false }),
+        Image,
+        Table.configure({ resizable: false }),
+        TableRow,
+        TableHeader,
+        TableCell,
+      ],
       content: data.content,
       editorProps: {
         attributes: { class: 'prose grow' }
@@ -116,10 +154,38 @@
     </button>
     <button
       type="button"
+      class:decoration-solid={isActive('underline')}
+      onclick={() => editor?.chain().focus().toggleUnderline().run()}
+    >
+      underline
+    </button>
+    <button
+      type="button"
       class:decoration-solid={isActive('strike')}
       onclick={() => editor?.chain().focus().toggleStrike().run()}
     >
       strike
+    </button>
+    <button
+      type="button"
+      class:decoration-solid={isActive('highlight')}
+      onclick={() => editor?.chain().focus().toggleHighlight().run()}
+    >
+      mark
+    </button>
+    <button
+      type="button"
+      class:decoration-solid={isActive('subscript')}
+      onclick={() => editor?.chain().focus().toggleSubscript().run()}
+    >
+      sub
+    </button>
+    <button
+      type="button"
+      class:decoration-solid={isActive('superscript')}
+      onclick={() => editor?.chain().focus().toggleSuperscript().run()}
+    >
+      sup
     </button>
     <button
       type="button"
@@ -183,6 +249,57 @@
     >
       codeblock
     </button>
+    <span class="text-theme-500">|</span>
+    <button
+      type="button"
+      class:decoration-solid={isActive('link')}
+      onclick={promptLink}
+    >
+      link
+    </button>
+    <button
+      type="button"
+      onclick={promptImage}
+    >
+      image
+    </button>
+    <span class="text-theme-500">|</span>
+    <button
+      type="button"
+      onclick={() => editor?.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()}
+    >
+      table
+    </button>
+    <button
+      type="button"
+      onclick={() => editor?.chain().focus().addColumnBefore().run()}
+    >
+      +col
+    </button>
+    <button
+      type="button"
+      onclick={() => editor?.chain().focus().deleteColumn().run()}
+    >
+      -col
+    </button>
+    <button
+      type="button"
+      onclick={() => editor?.chain().focus().addRowBefore().run()}
+    >
+      +row
+    </button>
+    <button
+      type="button"
+      onclick={() => editor?.chain().focus().deleteRow().run()}
+    >
+      -row
+    </button>
+    <button
+      type="button"
+      onclick={() => editor?.chain().focus().deleteTable().run()}
+    >
+      -table
+    </button>
   </div>
 
   <div
@@ -197,5 +314,5 @@
       outline: none;
       min-height: 8rem;
     }
-  </style>
+</style>
 </div>
