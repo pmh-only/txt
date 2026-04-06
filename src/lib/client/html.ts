@@ -1,4 +1,5 @@
 export const polishHtml = (html: string): string => {
+  if (typeof DOMParser === 'undefined') return ''
   const dom = new DOMParser().parseFromString(html, 'text/html')
 
   dom.body.querySelectorAll('*').forEach((el) => {
