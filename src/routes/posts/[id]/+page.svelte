@@ -54,7 +54,8 @@
     rel="amphtml"
     href="{page.url.origin}/posts/{data.post.alias}/amp"
   />
-  {@html `<script type="application/ld+json">${JSON.stringify({
+  <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+  {@html `<${'script'} type="application/ld+json">${JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
@@ -71,8 +72,9 @@
         item: page.url.origin + '/posts/' + data.post.alias
       }
     ]
-  })}<\/script>`}
-  {@html `<script type="application/ld+json">${JSON.stringify({
+  })}</script>`}
+  <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+  {@html `<${'script'} type="application/ld+json">${JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: data.post.title,
@@ -81,7 +83,7 @@
     dateModified: updatedAt ?? publishedAt,
     url: page.url.origin + '/posts/' + data.post.alias,
     publisher: { '@type': 'Organization', name: 'txt.' }
-  })}<\/script>`}
+  })}</script>`}
 </svelte:head>
 
 <main>

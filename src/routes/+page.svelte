@@ -20,12 +20,13 @@
     name="twitter:description"
     content="Browse all posts on txt."
   />
-  {@html `<script type="application/ld+json">${JSON.stringify({
+  <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+  {@html `<${'script'} type="application/ld+json">${JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: 'txt.',
     url: page.url.origin
-  })}<\/script>`}
+  })}</script>`}
 </svelte:head>
 
 <main>
