@@ -91,10 +91,13 @@ export const GET: RequestHandler = async ({
   <style amp-custom>
     :root { --c100: #cfcfcf; --c200: #a8a8a8; --c300: #888888; --c500: #646464; --c800: #2e2e2e; }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { height: 100%; background: var(--c800); color: var(--c200); font-family: 'Noto Serif KR', serif; font-size: 1.125rem; }
-    body { display: flex; justify-content: center; }
+    html, body { background: var(--c800); color: var(--c200); font-family: 'Noto Serif KR', serif; font-size: 1.125rem; }
+    body { display: flex; flex-direction: column; align-items: center; }
+    .notice { width: 100%; background: var(--c500); color: var(--c100); text-align: center; padding: 0.875rem 1rem; font-size: 0.9rem; border-bottom: 1px solid var(--c300); }
+    .notice a { color: var(--c100); font-weight: bold; text-decoration: underline; text-decoration-color: var(--c300); }
+    .notice a:hover { text-decoration-color: var(--c100); }
     .wrap { width: 100%; max-width: 36rem; padding: 0.5rem 1rem; display: flex; flex-direction: column; }
-    nav { text-align: center; margin-bottom: 0.5rem; }
+    nav { text-align: center; padding: 0.25rem 0 0.5rem; }
     a { color: inherit; text-decoration: none; cursor: pointer; }
     a:hover { text-decoration: underline; text-decoration-color: var(--c500); }
     h1 { font-size: 1.5rem; font-weight: bold; color: var(--c100); }
@@ -102,18 +105,29 @@ export const GET: RequestHandler = async ({
     footer { border-top: 1px solid var(--c500); padding: 0.75rem 0; font-size: 0.875rem; }
     footer p { margin-bottom: 0.25rem; }
     footer section { margin-top: 0.5rem; display: flex; gap: 1rem; }
-    .prose h1 { font-size: 1.25rem; font-weight: bold; color: var(--c100); }
-    .prose h2 { font-size: 1rem; font-weight: bold; color: var(--c100); }
-    .prose h3 { font-size: 0.875rem; font-weight: bold; color: var(--c100); }
+    .prose h1 { font-size: 1.25rem; font-weight: bold; color: var(--c100); margin: 0; padding: 0; }
+    .prose h2 { font-size: 1rem; font-weight: bold; color: var(--c100); margin: 0; padding: 0; }
+    .prose h3 { font-size: 0.875rem; font-weight: bold; color: var(--c100); margin: 0; padding: 0; }
     .prose strong { font-weight: bold; color: var(--c100); }
+    .prose em { font-style: italic; }
+    .prose u { text-decoration: underline; }
+    .prose s { text-decoration: line-through; }
+    .prose mark { background-color: var(--c500); color: var(--c100); padding: 0 0.1em; }
     .prose ul { list-style: disc; padding-left: 1.25em; }
     .prose ol { list-style: decimal; padding-left: 1.25em; }
     .prose blockquote { border-left: 2px solid var(--c500); padding-left: 0.75em; color: var(--c300); }
-    .prose code, .prose pre { font-family: monospace; color: var(--c100); }
+    .prose code { font-family: monospace; color: var(--c100); }
+    .prose pre { font-family: monospace; color: var(--c100); white-space: pre-wrap; word-break: break-all; }
     .prose hr { border-color: var(--c500); margin: 0.5rem 0; }
     .prose p { margin: 0; padding: 0; }
     .prose p:empty { min-height: 1em; }
     .prose > * + * { margin-top: 0.5em; }
+    .prose a { text-decoration-color: var(--c500); }
+    .prose a:hover { text-decoration: underline; }
+    .prose table { border-collapse: collapse; }
+    .prose td, .prose th { border: 1px solid var(--c500); padding: 0.25rem 0.5rem; min-width: 2rem; }
+    .prose th { font-weight: bold; color: var(--c100); }
+    .prose amp-img { max-width: 100%; }
   </style>
   <script type="application/ld+json">
   {
@@ -128,6 +142,9 @@ export const GET: RequestHandler = async ({
   </script>
 </head>
 <body>
+  <div class="notice">
+    you are viewing a limited amp page &mdash; <a href="${canonicalUrl}">read the full experience on txt.</a>
+  </div>
   <div class="wrap">
     <nav><a href="${url.origin}/">txt</a>.</nav>
     <main>
@@ -140,7 +157,10 @@ export const GET: RequestHandler = async ({
       <p><b>#${data.id} ${data.title}</b></p>
       <p>Posted: ${new Date(data.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
       ${data.updatedAt ? `<p>Updated: ${new Date(data.updatedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>` : ''}
-      <section><a href="${canonicalUrl}">View full page</a> &middot; <a href="${url.origin}/">Back</a></section>
+      <section>
+        <a href="${canonicalUrl}">full page</a>
+        <a href="${url.origin}/">back</a>
+      </section>
     </footer>
   </div>
 </body>
