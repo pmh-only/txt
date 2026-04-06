@@ -29,7 +29,7 @@
           >{relativeTime(post.createdAt)}</span
         >
       </p>
-      <p class="text-xs">{post.contentPreview ?? ''}</p>
+      <p class="text-xs">{(post.contentPreview ?? '').replace(/[\r\n]+/g, ' ')}</p>
     </a>
   </li>
 {/each}

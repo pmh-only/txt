@@ -9,7 +9,7 @@ export const polishHtml = (html: string): string => {
   })
 
   return dom.body.innerText
-    .replace(/[\r\n]+/g, '')
-    .replace(/\s+/g, ' ')
+    .replace(/[ \t]+/g, ' ')
+    .replace(/\n[ \t]+/g, '\n')
     .trim()
 }

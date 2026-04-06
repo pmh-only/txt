@@ -15,7 +15,7 @@
   import Highlight from '@tiptap/extension-highlight'
   import Subscript from '@tiptap/extension-subscript'
   import Superscript from '@tiptap/extension-superscript'
-  import { polishHtml } from '$lib/client/html'
+  import { polishHtml } from '$lib/html'
 
   let {
     data = {
@@ -122,7 +122,7 @@
   <input
     type="hidden"
     name="contentPreview"
-    value={polishHtml(content).slice(0, 47) + '...'}
+    value={polishHtml(content).replace(/[\r\n]+/g, ' ').slice(0, 47) + '...'}
   />
 
   <label>
