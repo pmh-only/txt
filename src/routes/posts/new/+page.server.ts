@@ -31,6 +31,7 @@ export const actions = {
       title: data.get('title')?.toString() ?? '',
       alias: data.get('alias')?.toString() ?? '',
       content: data.get('content')?.toString() ?? '',
+      contentPreview: data.get('contentPreview')?.toString() ?? '',
       visibility: data.get('visibility')?.toString() as
         | 'PUBLIC'
         | 'UNLISTED'
@@ -62,7 +63,10 @@ export const actions = {
     await db.insert(post).values(inferData)
 
     if (inferData.visibility === 'PUBLIC') {
-      void pingIndexNow(new URL(request.url).origin, `/posts/${inferData.alias}`)
+      void pingIndexNow(
+        new URL(request.url).origin,
+        `/posts/${inferData.alias}`
+      )
     }
 
     redirect(303, resolve('/posts/[id]', { id: inferData.alias }))
