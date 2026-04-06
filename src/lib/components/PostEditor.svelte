@@ -6,7 +6,7 @@
   import Image from '@tiptap/extension-image'
   import Underline from '@tiptap/extension-underline'
   import { Table, TableRow, TableHeader, TableCell } from '@tiptap/extension-table'
-  import TextStyle from '@tiptap/extension-text-style'
+  import { TextStyle } from '@tiptap/extension-text-style'
   import Highlight from '@tiptap/extension-highlight'
   import Subscript from '@tiptap/extension-subscript'
   import Superscript from '@tiptap/extension-superscript'
