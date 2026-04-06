@@ -70,7 +70,10 @@ export const actions = {
     await db.update(post).set(inferData).where(eq(post.id, id))
 
     if (inferData.visibility === 'PUBLIC') {
-      void pingIndexNow(new URL(request.url).origin, `/posts/${inferData.alias}`)
+      void pingIndexNow(
+        new URL(request.url).origin,
+        `/posts/${inferData.alias}`
+      )
     }
 
     redirect(

@@ -25,7 +25,9 @@
       <p>
         <b>#{post.id}</b>
         {post.title}.txt
-        <span class="text-xs text-theme-500">{relativeTime(post.createdAt)}</span>
+        <span class="text-xs text-theme-500"
+          >{relativeTime(post.createdAt)}</span
+        >
       </p>
       <p class="text-xs">{post.contentPreview ?? ''}</p>
     </a>

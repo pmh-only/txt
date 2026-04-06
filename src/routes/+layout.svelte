@@ -15,7 +15,10 @@
 
   $effect(() => {
     if (browser) {
-      const lang = document.querySelector('meta[http-equiv="content-language"]')?.getAttribute('content') ?? 'en'
+      const lang =
+        document
+          .querySelector('meta[http-equiv="content-language"]')
+          ?.getAttribute('content') ?? 'en'
       document.documentElement.lang = lang
     }
   })
@@ -32,7 +35,12 @@
   <link rel="canonical" href={page.url.origin + page.url.pathname} />
   <link rel="manifest" href="/manifest.webmanifest" />
   <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
-  <link rel="alternate" type="application/rss+xml" title="txt. RSS Feed" href="/rss.xml" />
+  <link
+    rel="alternate"
+    type="application/rss+xml"
+    title="txt. RSS Feed"
+    href="/rss.xml"
+  />
   <meta name="theme-color" content="#2e2e2e" />
   <link rel="apple-touch-icon" href={favicon} />
   <link rel="shortcut icon" href={favicon} type="image/webp" />

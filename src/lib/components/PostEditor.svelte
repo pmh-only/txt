@@ -5,7 +5,12 @@
   import Link from '@tiptap/extension-link'
   import Image from '@tiptap/extension-image'
   import Underline from '@tiptap/extension-underline'
-  import { Table, TableRow, TableHeader, TableCell } from '@tiptap/extension-table'
+  import {
+    Table,
+    TableRow,
+    TableHeader,
+    TableCell
+  } from '@tiptap/extension-table'
   import { TextStyle } from '@tiptap/extension-text-style'
   import Highlight from '@tiptap/extension-highlight'
   import Subscript from '@tiptap/extension-subscript'
@@ -39,7 +44,9 @@
   let aliasManual = $state(data.alias !== '')
 
   function slugify(s: string) {
-    return s.trim().toLowerCase()
+    return s
+      .trim()
+      .toLowerCase()
       .replace(/[^\w\s-]/g, '')
       .replace(/[\s_]+/g, '-')
       .replace(/-+/g, '-')
@@ -93,7 +100,7 @@
         Table.configure({ resizable: false }),
         TableRow,
         TableHeader,
-        TableCell,
+        TableCell
       ],
       content: data.content,
       editorProps: {
@@ -210,7 +217,8 @@
     <button
       type="button"
       class:decoration-solid={isActive('superscript')}
-      onclick={() => editor?.chain().focus().toggleSuperscript().run()}
+      onclick={() =>
+        editor?.chain().focus().toggleSuperscript().run()}
     >
       sup
     </button>
@@ -284,16 +292,16 @@
     >
       link
     </button>
-    <button
-      type="button"
-      onclick={promptImage}
-    >
-      image
-    </button>
+    <button type="button" onclick={promptImage}> image </button>
     <span class="text-theme-500">|</span>
     <button
       type="button"
-      onclick={() => editor?.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()}
+      onclick={() =>
+        editor
+          ?.chain()
+          .focus()
+          .insertTable({ rows: 3, cols: 3, withHeaderRow: true })
+          .run()}
     >
       table
     </button>
@@ -341,5 +349,5 @@
       outline: none;
       min-height: 8rem;
     }
-</style>
+  </style>
 </div>

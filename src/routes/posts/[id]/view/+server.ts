@@ -1,9 +1,9 @@
 import { count, eq, sql } from 'drizzle-orm'
-import { db } from '../../../lib/server/db'
-import { post, view } from '../../../lib/server/db/schema'
+import { db } from '$lib/server/db'
+import { post, view } from '$lib/server/db/schema'
 import type { RequestHandler } from './$types'
 
-export const HEAD: RequestHandler = async ({
+export const PUT: RequestHandler = async ({
   params,
   request,
   getClientAddress

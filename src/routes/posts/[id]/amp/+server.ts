@@ -15,28 +15,41 @@ function toAmpHtml(html: string): string {
       const alt = (attrs.match(/alt="([^"]*)"/) ?? [])[1] ?? ''
       return `<amp-img src="${src}" alt="${alt}" width="800" height="450" layout="responsive"></amp-img>`
     })
-    .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+    .replace(
+      /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi,
+      ''
+    )
 }
 
-export const GET: RequestHandler = async ({ params, cookies, url }) => {
+export const GET: RequestHandler = async ({
+  params,
+  cookies,
+  url
+}) => {
   const [data] = await db
     .select()
     .from(post)
-    .where(or(eq(post.id, parseInt(params.id)), eq(post.alias, params.id)))
+    .where(
+      or(eq(post.id, parseInt(params.id)), eq(post.alias, params.id))
+    )
     .orderBy(desc(post.id))
     .limit(1)
 
   if (!data) error(404, { message: 'Not Found' })
 
   const isAdmin = validateToken(cookies.get('SESSION_TOKEN') ?? '')
-  if (data.visibility === 'PRIVATE' && !isAdmin) error(404, { message: 'Not Found' })
+  if (data.visibility === 'PRIVATE' && !isAdmin)
+    error(404, { message: 'Not Found' })
 
   const lang = detectLang(data.content)
   const locale = localeMap[lang]
   const canonicalUrl = `${url.origin}/posts/${data.alias}`
-  const description = data.contentPreview ?? `${data.title} — read on txt.`
+  const description =
+    data.contentPreview ?? `${data.title} — read on txt.`
   const publishedAt = new Date(data.createdAt).toISOString()
-  const updatedAt = data.updatedAt ? new Date(data.updatedAt).toISOString() : publishedAt
+  const updatedAt = data.updatedAt
+    ? new Date(data.updatedAt).toISOString()
+    : publishedAt
 
   const html = `<!doctype html>
 <html ⚡ lang="${lang}">

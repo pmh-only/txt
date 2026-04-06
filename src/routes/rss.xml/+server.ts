@@ -47,7 +47,9 @@ export const GET: RequestHandler = async ({ url }) => {
     .join('\n')
 
   const lastBuildDate =
-    posts.length > 0 ? new Date(posts[0].createdAt).toUTCString() : new Date().toUTCString()
+    posts.length > 0
+      ? new Date(posts[0].createdAt).toUTCString()
+      : new Date().toUTCString()
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">

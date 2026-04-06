@@ -5,7 +5,10 @@ import { env } from '$env/dynamic/private'
  * Requires INDEXNOW_KEY in environment variables.
  * No-ops silently if the key is not set.
  */
-export async function pingIndexNow(origin: string, urlPath: string): Promise<void> {
+export async function pingIndexNow(
+  origin: string,
+  urlPath: string
+): Promise<void> {
   const key = env.INDEXNOW_KEY
   if (!key) return
 

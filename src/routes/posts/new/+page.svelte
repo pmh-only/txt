@@ -11,7 +11,8 @@
   let dirty = $state(false)
 
   beforeNavigate(({ cancel }) => {
-    if (dirty && !submitting && !confirm('Leave without saving?')) cancel()
+    if (dirty && !submitting && !confirm('Leave without saving?'))
+      cancel()
   })
 </script>
 

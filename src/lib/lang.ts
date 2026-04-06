@@ -4,7 +4,9 @@ const KOREAN_RE = /[\uAC00-\uD7A3\u1100-\u11FF\u3130-\u318F]/
 export function detectLang(text: string): 'ko' | 'en' {
   const sample = text.slice(0, 500).replace(/\s/g, '')
   if (!sample.length) return 'en'
-  const korean = sample.split('').filter((c) => KOREAN_RE.test(c)).length
+  const korean = sample
+    .split('')
+    .filter((c) => KOREAN_RE.test(c)).length
   return korean / sample.length > 0.2 ? 'ko' : 'en'
 }
 
