@@ -8,17 +8,42 @@ import { detectLang, localeMap } from '$lib/lang'
 import type { RequestHandler } from './$types'
 
 function toAmpHtml(html: string): string {
-  // Replace <img> tags with <amp-img layout="responsive">
-  return html
-    .replace(/<img(\s[^>]*?)?\s*\/?>/gi, (_match, attrs = '') => {
-      const src = (attrs.match(/src="([^"]*)"/) ?? [])[1] ?? ''
-      const alt = (attrs.match(/alt="([^"]*)"/) ?? [])[1] ?? ''
-      return `<amp-img src="${src}" alt="${alt}" width="800" height="450" layout="responsive"></amp-img>`
-    })
-    .replace(
-      /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi,
-      ''
-    )
+  return (
+    html
+      // <img> → <amp-img>
+      .replace(/<img(\s[^>]*?)?\s*\/?>/gi, (_match, attrs = '') => {
+        const src = (attrs.match(/src="([^"]*)"/) ?? [])[1] ?? ''
+        const alt = (attrs.match(/alt="([^"]*)"/) ?? [])[1] ?? ''
+        return `<amp-img src="${src}" alt="${alt}" width="800" height="450" layout="responsive"></amp-img>`
+      })
+      // <video> → <amp-video>
+      .replace(
+        /<video(\s[^>]*?)?\s*\/?>/gi,
+        (_m, a = '') => `<amp-video${a} layout="responsive">`
+      )
+      .replace(/<\/video>/gi, '</amp-video>')
+      // <audio> → <amp-audio>
+      .replace(
+        /<audio(\s[^>]*?)?\s*\/?>/gi,
+        (_m, a = '') => `<amp-audio${a}>`
+      )
+      .replace(/<\/audio>/gi, '</amp-audio>')
+      // <iframe> → <amp-iframe>
+      .replace(
+        /<iframe(\s[^>]*?)?\s*\/?>/gi,
+        (_m, a = '') => `<amp-iframe${a} layout="responsive">`
+      )
+      .replace(/<\/iframe>/gi, '</amp-iframe>')
+      // Remove <script> and <style> tags (forbidden in AMP content)
+      .replace(
+        /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi,
+        ''
+      )
+      .replace(/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi, '')
+      // Remove inline style= and event attributes (onclick, onload, etc.)
+      .replace(/\s+style="[^"]*"/gi, '')
+      .replace(/\s+on\w+="[^"]*"/gi, '')
+  )
 }
 
 export const GET: RequestHandler = async ({
@@ -60,7 +85,6 @@ export const GET: RequestHandler = async ({
   <meta name="description" content="${description.replace(/"/g, '&quot;')}" />
   <link rel="canonical" href="${canonicalUrl}" />
   <meta property="og:locale" content="${locale}" />
-  <meta http-equiv="content-language" content="${lang}" />
   <script async src="https://cdn.ampproject.org/v0.js"></script>
   <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style>
   <noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
