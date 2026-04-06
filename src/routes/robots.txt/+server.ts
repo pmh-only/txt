@@ -1,17 +1,10 @@
 import type { RequestHandler } from './$types'
 
-export const GET: RequestHandler = () => {
-  const body = `User-agent: *
-Allow: /
-Disallow: /auth
-Disallow: /posts/*/edit
-Disallow: /posts/*/delete
-Disallow: /posts/new
+export const GET: RequestHandler = ({ url }) => {
+  const sitemap = `${url.protocol}//${url.host}/sitemap.xml`
 
-Sitemap: /sitemap.xml
-`
-
-  return new Response(body, {
-    headers: { 'Content-Type': 'text/plain' }
-  })
+  return new Response(
+    `User-agent: *\nAllow: /\nDisallow: /auth\nDisallow: /posts/*/edit\nDisallow: /posts/*/delete\nDisallow: /posts/new\n\nSitemap: ${sitemap}\n`,
+    { headers: { 'Content-Type': 'text/plain' } }
+  )
 }
