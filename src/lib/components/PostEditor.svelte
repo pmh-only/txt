@@ -31,8 +31,11 @@
   let editorEl: HTMLElement
   let editor: Editor
 
+  // svelte-ignore state_referenced_locally
   let titleVal = $state(data.title)
+  // svelte-ignore state_referenced_locally
   let aliasVal = $state(data.alias)
+  // svelte-ignore state_referenced_locally
   let aliasManual = $state(data.alias !== '')
 
   function slugify(s: string) {
