@@ -31,6 +31,23 @@
   let editorEl: HTMLElement
   let editor: Editor
 
+  let titleVal = $state(data.title)
+  let aliasVal = $state(data.alias)
+  let aliasManual = $state(data.alias !== '')
+
+  function slugify(s: string) {
+    return s.trim().toLowerCase()
+      .replace(/[^\w\s-]/g, '')
+      .replace(/[\s_]+/g, '-')
+      .replace(/-+/g, '-')
+      .replace(/^-|-$/g, '')
+  }
+
+  function onTitleInput(e: Event) {
+    titleVal = (e.target as HTMLInputElement).value
+    if (!aliasManual) aliasVal = slugify(titleVal)
+  }
+
   // svelte-ignore state_referenced_locally
   let content = $state(data.content)
   let tick = $state(0)
@@ -100,11 +117,18 @@
 
   <label>
     <p>title</p>
-    <input name="title" value={data.title} />
+    <input name="title" value={titleVal} oninput={onTitleInput} />
   </label>
   <label>
     <p>alias</p>
-    <input name="alias" value={data.alias} />
+    <input
+      name="alias"
+      value={aliasVal}
+      oninput={(e) => {
+        aliasVal = (e.target as HTMLInputElement).value
+        aliasManual = true
+      }}
+    />
   </label>
 
   <div class="flex">

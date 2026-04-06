@@ -1,8 +1,11 @@
 <script lang="ts">
   import { resolve } from '$app/paths'
+  import { enhance } from '$app/forms'
   import type { PageProps } from './$types'
 
   let { data, params }: PageProps = $props()
+
+  let submitting = $state(false)
 </script>
 
 <svelte:head>
@@ -13,14 +16,25 @@
 <main>
   <h1>Delete post #{data.post.id}</h1>
 
-  <form method="POST" id="form">
+  <form
+    method="POST"
+    id="form"
+    use:enhance={() => {
+      submitting = true
+      return async ({ update }) => {
+        await update()
+        submitting = false
+      }
+    }}
+  >
     <input type="hidden" name="id" value={data.post.id} />
-
-    <p>Are you sure?</p>
+    <p>Delete "{data.post.title}"?</p>
   </form>
 </main>
 
 <footer>
-  <button form="form" type="submit">Submit</button>
-  <a href={resolve('/posts/[id]', { id: params.id })}> Cancel </a>
+  <button form="form" type="submit" disabled={submitting}>
+    {submitting ? 'deleting...' : 'delete'}
+  </button>
+  <a href={resolve('/posts/[id]', { id: params.id })}>cancel</a>
 </footer>
