@@ -85,13 +85,14 @@ export const GET: RequestHandler = async ({
   <meta name="description" content="${description.replace(/"/g, '&quot;')}" />
   <link rel="canonical" href="${canonicalUrl}" />
   <meta property="og:locale" content="${locale}" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700&display=swap" />
   <script async src="https://cdn.ampproject.org/v0.js"></script>
   <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style>
   <noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
   <style amp-custom>
     :root { --c100: #cfcfcf; --c200: #a8a8a8; --c300: #888888; --c500: #646464; --c800: #2e2e2e; }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { background: var(--c800); color: var(--c200); font-family: 'Noto Serif KR', serif; font-size: 1.125rem; }
+    html, body { background: var(--c800); color: var(--c200); font-family: 'Noto Serif KR', serif; font-size: 1.125rem; line-height: 1.75; word-break: keep-all; overflow-wrap: break-word; }
     body { display: flex; flex-direction: column; align-items: center; }
     .notice { width: 100%; background: var(--c500); color: var(--c100); text-align: center; padding: 0.875rem 1rem; font-size: 0.9rem; border-bottom: 1px solid var(--c300); }
     .notice a { color: var(--c100); font-weight: bold; text-decoration: underline; text-decoration-color: var(--c300); }
