@@ -7,7 +7,14 @@
 
   let { data, params }: PageProps = $props()
 
-  onMount(() => fetch(data.post.id.toString(), { method: 'HEAD' }))
+  onMount(() =>
+    fetch(
+      resolve('/posts/[id]/view', {
+        id: data.post.id.toString()
+      }),
+      { method: 'POST' }
+    )
+  )
 
   const lang = $derived(detectLang(data.post.content))
 
@@ -18,7 +25,9 @@
     new Date(data.post.createdAt).toISOString()
   )
   const updatedAt = $derived(
-    data.post.updatedAt ? new Date(data.post.updatedAt).toISOString() : null
+    data.post.updatedAt
+      ? new Date(data.post.updatedAt).toISOString()
+      : null
   )
 </script>
 
@@ -36,19 +45,33 @@
   <meta name="twitter:title" content="{data.post.title} - txt." />
   <meta name="twitter:description" content={description} />
   <meta property="og:locale" content={localeMap[lang]} />
+  <!-- @ts-expect-error content-language is valid but not in TS types -->
   <meta http-equiv="content-language" content={lang} />
   {#if data.post.visibility !== 'PUBLIC'}
     <meta name="robots" content="noindex" />
   {/if}
-  <link rel="amphtml" href="{page.url.origin}/posts/{data.post.alias}/amp" />
+  <link
+    rel="amphtml"
+    href="{page.url.origin}/posts/{data.post.alias}/amp"
+  />
   {@html `<script type="application/ld+json">${JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: page.url.origin + '/' },
-      { '@type': 'ListItem', position: 2, name: data.post.title, item: page.url.origin + '/posts/' + data.post.alias }
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: page.url.origin + '/'
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: data.post.title,
+        item: page.url.origin + '/posts/' + data.post.alias
+      }
     ]
-  })}</script>`}
+  })}<\/script>`}
   {@html `<script type="application/ld+json">${JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -58,7 +81,7 @@
     dateModified: updatedAt ?? publishedAt,
     url: page.url.origin + '/posts/' + data.post.alias,
     publisher: { '@type': 'Organization', name: 'txt.' }
-  })}</script>`}
+  })}<\/script>`}
 </svelte:head>
 
 <main>

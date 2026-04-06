@@ -11,15 +11,21 @@
   <title>Posts - txt.</title>
   <meta name="description" content="Browse all posts on txt." />
   <meta property="og:title" content="Posts - txt." />
-  <meta property="og:description" content="Browse all posts on txt." />
+  <meta
+    property="og:description"
+    content="Browse all posts on txt."
+  />
   <meta name="twitter:title" content="Posts - txt." />
-  <meta name="twitter:description" content="Browse all posts on txt." />
+  <meta
+    name="twitter:description"
+    content="Browse all posts on txt."
+  />
   {@html `<script type="application/ld+json">${JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: 'txt.',
     url: page.url.origin
-  })}</script>`}
+  })}<\/script>`}
 </svelte:head>
 
 <main>
