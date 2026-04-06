@@ -81,7 +81,7 @@ export const GET: RequestHandler = async ({
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1" />
-  <title>${data.title} - txt.</title>
+  <title>${data.title}.txt - txt.</title>
   <meta name="description" content="${description.replace(/"/g, '&quot;')}" />
   <link rel="canonical" href="${canonicalUrl}" />
   <link rel="icon" href="${url.origin}/favicon.webp" />

@@ -3,7 +3,7 @@
 </script>
 
 <svelte:head>
-  <title>{data.post.title} - txt.</title>
+  <title>{data.post.title}.txt - text.</title>
 </svelte:head>
 
 {@render children()}
