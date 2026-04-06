@@ -39,6 +39,6 @@ USER 1000:1000
 
 COPY --chown=1000:1000 --from=deps /app/node_modules/ /app/node_modules/
 COPY --chown=1000:1000 --from=build /app/build/ /app/build/
-COPY --chown=1000:1000 ./migrations/ /app/migrations/
+COPY --chown=1000:1000 ./drizzle/ /app/drizzle/
 
 CMD ["node", "build"]

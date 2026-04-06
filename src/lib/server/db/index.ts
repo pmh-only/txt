@@ -8,4 +8,4 @@ const client = new Database(env.DATABASE_URL ?? 'data/local.db')
 
 export const db = drizzle(client, { schema })
 
-migrate(db, { migrationsFolder: 'migrations' })
+migrate(db, { migrationsFolder: 'drizzle' })
