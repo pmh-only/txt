@@ -23,7 +23,11 @@ if (!existsSync(keyPath)) {
       'No .extension-key.pem file found and EXTENSION_KEY_PEM env var is not set.'
     )
   }
-  writeFileSync(keyPath, keyFromEnv)
+  // Secret is base64-encoded to survive Docker build-arg newline mangling
+  writeFileSync(
+    keyPath,
+    Buffer.from(keyFromEnv, 'base64').toString('utf-8')
+  )
   tempKey = true
 }
 
