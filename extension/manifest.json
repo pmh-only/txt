@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "txt poster",
+  "version": "1.0.0",
+  "description": "Bookmark the current page to txt with one click",
+  "update_url": "https://txt.pmh.so/updates.xml",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage",
+    "cookies",
+    "notifications"
+  ],
+  "host_permissions": ["<all_urls>"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "options_ui": {
+    "page": "popup.html",
+    "open_in_tab": false
+  },
+  "action": {
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  }
+}

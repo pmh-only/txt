@@ -122,7 +122,9 @@
   <input
     type="hidden"
     name="contentPreview"
-    value={polishHtml(content).replace(/[\r\n]+/g, ' ').slice(0, 47) + '...'}
+    value={polishHtml(content)
+      .replace(/[\r\n]+/g, ' ')
+      .slice(0, 47) + '...'}
   />
 
   <label>

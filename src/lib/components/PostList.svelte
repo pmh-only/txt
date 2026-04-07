@@ -16,20 +16,27 @@
 </script>
 
 {#each posts as post (post.id)}
+  {@const isBookmark = post.type === 'bookmark'}
+  {@const href =
+    isBookmark && post.sourceUrl
+      ? post.sourceUrl
+      : resolve('/posts/[id]', { id: post.alias })}
   <li class="mb-2">
     <a
-      href={resolve('/posts/[id]', {
-        id: post.alias
-      })}
+      {href}
+      target={isBookmark ? '_blank' : undefined}
+      rel={isBookmark ? 'noopener noreferrer' : undefined}
     >
       <p>
         <b>#{post.id}</b>
-        {post.title}.txt
+        {post.title}{isBookmark ? ' ↗' : '.txt'}
         <span class="text-xs text-theme-500"
           >{relativeTime(post.createdAt)}</span
         >
       </p>
-      <p class="text-xs">{(post.contentPreview ?? '').replace(/[\r\n]+/g, ' ')}</p>
+      <p class="text-xs">
+        {(post.contentPreview ?? '').replace(/[\r\n]+/g, ' ')}
+      </p>
     </a>
   </li>
 {/each}

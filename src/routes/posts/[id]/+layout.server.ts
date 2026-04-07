@@ -2,7 +2,7 @@ import { desc, eq, or } from 'drizzle-orm'
 import { db } from '$lib/server/db'
 import type { LayoutServerLoad } from './$types'
 import { post } from '$lib/server/db/schema'
-import { error } from '@sveltejs/kit'
+import { error, redirect } from '@sveltejs/kit'
 import { validateToken } from '$lib/server/crypto'
 
 export const load: LayoutServerLoad = async ({ params, cookies }) => {
@@ -29,6 +29,10 @@ export const load: LayoutServerLoad = async ({ params, cookies }) => {
     error(404, {
       message: 'Not Found'
     })
+  }
+
+  if (data.type === 'bookmark' && data.sourceUrl) {
+    redirect(302, data.sourceUrl)
   }
 
   return {

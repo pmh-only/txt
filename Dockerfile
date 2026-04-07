@@ -9,6 +9,9 @@ RUN npm i -g pnpm
 
 FROM pnpm AS build
 
+ARG EXTENSION_KEY_PEM
+ENV EXTENSION_KEY_PEM=$EXTENSION_KEY_PEM
+
 COPY ./package.json ./pnpm-lock.yaml /app/
 RUN pnpm i
 

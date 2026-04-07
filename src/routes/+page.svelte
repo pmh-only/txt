@@ -48,5 +48,7 @@
 <footer>
   {#if data.isAdmin}
     <a href={resolve('/posts/new')}>Create</a>
+    <!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
+    <a href="/extension.crx" download>Extension</a>
   {/if}
 </footer>

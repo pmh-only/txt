@@ -12,6 +12,10 @@ export const post = sqliteTable('post', {
   content: text('content').notNull(),
   contentPreview: text('content_preview'),
   alias: text('alias').notNull().unique(),
+  type: text('type', { enum: ['post', 'bookmark'] })
+    .notNull()
+    .default('post'),
+  sourceUrl: text('source_url'),
   visibility: text('visibility', {
     enum: ['PUBLIC', 'UNLISTED', 'PRIVATE']
   }).notNull(),

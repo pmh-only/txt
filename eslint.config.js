@@ -42,5 +42,12 @@ export default defineConfig(
     // Override or add rule settings here, such as:
     // 'svelte/button-has-type': 'error'
     rules: {}
+  },
+  {
+    files: ['src/lib/components/PostList.svelte'],
+    rules: {
+      // PostList links bookmarks to external sourceUrls which cannot use resolve()
+      'svelte/no-navigation-without-resolve': 'off'
+    }
   }
 )
