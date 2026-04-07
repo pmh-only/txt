@@ -160,8 +160,7 @@ export const GET: RequestHandler = async ({
       <p>Posted: ${new Date(data.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
       ${data.updatedAt ? `<p>Updated: ${new Date(data.updatedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>` : ''}
       <section>
-        <a href="${canonicalUrl}">full page</a>
-        <a href="${url.origin}/">back</a>
+        <a href="${url.origin}/">Back</a>
       </section>
     </footer>
   </div>

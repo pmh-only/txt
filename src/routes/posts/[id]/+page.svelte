@@ -32,7 +32,7 @@
 </script>
 
 <svelte:head>
-  <title>{data.post.title} - txt.</title>
+  <title>{data.post.title}.txt - txt.</title>
   <meta name="description" content={description} />
   <meta property="og:type" content="article" />
   <meta property="og:title" content="{data.post.title} - txt." />
@@ -45,8 +45,6 @@
   <meta name="twitter:title" content="{data.post.title} - txt." />
   <meta name="twitter:description" content={description} />
   <meta property="og:locale" content={localeMap[lang]} />
-  <!-- @ts-expect-error content-language is valid but not in TS types -->
-  <meta http-equiv="content-language" content={lang} />
   {#if data.post.visibility !== 'PUBLIC'}
     <meta name="robots" content="noindex" />
   {/if}

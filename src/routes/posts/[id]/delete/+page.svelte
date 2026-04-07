@@ -34,7 +34,7 @@
 
 <footer>
   <button form="form" type="submit" disabled={submitting}>
-    {submitting ? 'deleting...' : 'delete'}
+    {submitting ? 'Deleting...' : 'Delete'}
   </button>
-  <a href={resolve('/posts/[id]', { id: params.id })}>cancel</a>
+  <a href={resolve('/posts/[id]', { id: params.id })}>Cancel</a>
 </footer>

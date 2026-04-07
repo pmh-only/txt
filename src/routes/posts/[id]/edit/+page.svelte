@@ -50,7 +50,7 @@
 
 <footer>
   <button type="submit" form="form" disabled={submitting}>
-    {submitting ? 'saving...' : 'submit'}
+    {submitting ? 'Saving...' : 'Submit'}
   </button>
-  <a href={resolve('/posts/[id]', { id: params.id })}>cancel</a>
+  <a href={resolve('/posts/[id]', { id: params.id })}>Cancel</a>
 </footer>
