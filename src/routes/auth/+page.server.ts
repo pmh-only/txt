@@ -18,7 +18,8 @@ export const load: PageServerLoad = ({ url, cookies }) => {
     path: '/',
     secure: url.protocol === 'https:',
     httpOnly: true,
-    sameSite: true
+    sameSite: true,
+    maxAge: 60 * 60 * 24 * 30
   })
   redirect(303, state)
 }
