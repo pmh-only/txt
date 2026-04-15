@@ -1,5 +1,5 @@
 const SERVICE_URL_KEY = 'serviceUrl'
-const DEFAULT_SERVICE_URL = 'https://txt.pmh.so'
+const DEFAULT_SERVICE_URL = 'https://txt.pmh.codes'
 
 async function getServiceUrl() {
   return new Promise((resolve) => {
